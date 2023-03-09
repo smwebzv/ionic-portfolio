@@ -1,0 +1,27 @@
+<capacitor-google-map #map></capacitor-google-map>
+
+<ion-modal
+  [isOpen]="modalOpen"
+  #modal
+  (willDismiss)="onModalDissmiss($event)"
+  [initialBreakpoint]="0.45"
+  [breakpoints]="[0, 0.45, 0.75, 1]"
+>
+  <ion-content class="ion-padding">
+    <ion-card *ngIf="openedCar">
+      <ion-slides #slider [options]="slideOpts">
+        <ion-slide *ngFor="let img of openedCar.images">
+          <img class="car-image" alt="Silhouette of mountains" [src]="img" />
+        </ion-slide>
+      </ion-slides>
+      <ion-card-header>
+        <ion-card-title>{{openedCar.car.description}}</ion-card-title>
+        <ion-card-subtitle>{{openedCar.car.price}}KM</ion-card-subtitle>
+      </ion-card-header>
+    
+      <ion-card-content>
+        {{openedCar.car.longDescription}}
+      </ion-card-content>
+    </ion-card>
+  </ion-content>
+</ion-modal>
