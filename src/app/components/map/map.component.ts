@@ -77,7 +77,10 @@ export class MapComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef) {}
 
   async ngOnInit() {
-    await this.renderMap();
+    setTimeout(async () => {
+      await this.renderMap();
+    }, 1000);
+   
   }
 
   async renderMap() {
@@ -113,7 +116,6 @@ export class MapComponent implements OnInit {
       ]);
 
       await this.newMap.setOnMarkerClickListener((event) => {
-        console.log('CLICK ON MARKER', JSON.stringify(event));
         this.openedCar = this.data[+event.markerId.slice(-1)];
         this.modalOpen = true;
         this.cdr.detectChanges();
